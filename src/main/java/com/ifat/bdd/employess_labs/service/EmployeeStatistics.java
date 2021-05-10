@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public class EmployeeStatistics {
+    //LAB7_b
     public static boolean isManEmployeesMoreExpensive(List<Employee> employees) {
         Map<Gender, Integer> sumOfMensVsWoman = EmployeesService.calculateSumOfMensSalaryVSSumOfWoman(employees);
         return sumOfMensVsWoman.get(Gender.MAN) > sumOfMensVsWoman.get(Gender.WOMAN) ? true : false;

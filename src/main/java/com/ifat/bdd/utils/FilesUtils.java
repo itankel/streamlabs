@@ -9,6 +9,7 @@ import java.util.Arrays;
 
 public class FilesUtils {
 
+    //LAB3_a
     @SneakyThrows
     public static int countNumOfWords(File file) {
         return new BufferedReader(new FileReader(file))
@@ -19,6 +20,7 @@ public class FilesUtils {
 
     }
 
+    //LAB3_b
     @SneakyThrows
     public static double avgLengthOfFilesWords(File file) {
         return new BufferedReader(new FileReader(file)).lines()
