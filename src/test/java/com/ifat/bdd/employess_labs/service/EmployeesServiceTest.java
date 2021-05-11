@@ -179,7 +179,7 @@ public class EmployeesServiceTest {
                                 .build());
 
         System.out.println("companyEmployees = " + companyEmployees);
-        Map<EmployeeCategory, Long> expectedCounts = companyEmployees.stream().collect(Collectors.groupingBy(employee -> employee.getEmployeeCategory(),
+        Map<EmployeeCategory, Long> expectedCounts = companyEmployees.stream().collect(Collectors.groupingBy(Employee::getEmployeeCategory,
                 Collectors.counting()));
         System.out.println("expectedCounts = " + expectedCounts);
         Map<EmployeeCategory, Long> actualCount = EmployeesService.countEmployeesByCategory(companyEmployees);
@@ -205,7 +205,7 @@ public class EmployeesServiceTest {
         }
     }
 
-    // in case there are 2 names the same there is thow exception
+    // in case there are 2 names the same there is throws exception
     @Test(expected=IllegalStateException.class)
     public void TestListEmployeesNameWithSalaryDuplicateData() {
         List<Employee> listOfEmployees1 = List
