@@ -1,12 +1,16 @@
 package com.ifat.bdd.employess_labs.service;
 
 import com.ifat.bdd.employess_labs.model.Employee;
+import com.ifat.bdd.employess_labs.model.EmployeeCategory;
 import com.ifat.bdd.employess_labs.model.Gender;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class EmployeesService {
 
@@ -18,6 +22,13 @@ public class EmployeesService {
                 .sum();
 
     }
+
+    //LAB2
+    public static int calculateSalaryOfAllEmployeesPerYear(List<Employee> employees){
+        return employees.stream()
+                .flatMap(e -> Arrays.stream(e.getSalaries()).boxed()).mapToInt(i -> i).sum();
+    }
+
 
     //LAB4
     public static String listOfEmployeesNamesCommaSeparated(List<Employee> employees) {
@@ -63,10 +74,23 @@ public class EmployeesService {
                 Collectors.counting()));
     }
 
+    //LAB9
+    public static Map<EmployeeCategory,Long> countEmployeesByCategory(List<Employee> employees){
+       return employees.stream()
+                .collect(Collectors.groupingBy(emp -> EmployeeCategory.getEmployeeCategory(emp.getSalary()),
+                        Collectors.counting()));
+
+    }
+
     //LAB11
     public static Map<String, Integer> listEmployeesNameWithSalary(List<Employee> employees) {
         return employees.stream().collect(Collectors.toMap(Employee::getFirstName,
                 Employee::getSalary));
     }
+
+
+
+
+
 }
 
